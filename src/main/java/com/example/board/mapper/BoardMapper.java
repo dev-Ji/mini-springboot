@@ -9,4 +9,8 @@ import com.example.board.dto.BoardDTO;
 @Mapper
 public interface BoardMapper {
 	public List<BoardDTO> list();
+	
+	public BoardDTO view(int idx);
+	
+	public int write(BoardDTO dto);
 }

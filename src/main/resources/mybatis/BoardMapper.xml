@@ -6,6 +6,10 @@
 	<select id="list" resultType="BoardDTO">
 		SELECT * FROM studyboard
 	</select>
-	
-    
+	<select id="view" resultType="BoardDTO">
+		SELECT * FROM studyboard WHERE idx=#{idx}	
+	</select>
+    <insert id="write" parameterType="BoardDTO">
+    	insert into studyboard(id,title,content,regdate) values(#{id},#{title},#{content},sysdate());
+    </insert>
 </mapper>

@@ -21,4 +21,13 @@ public class BoardService {
 	public List<BoardDTO> list() {
 		return boardMapper.list();
 	}
+	
+	public BoardDTO view(int idx) {
+		return boardMapper.view(idx);
+	}
+	
+	public int write(BoardDTO dto) {
+		return boardMapper.write(dto);
+	}
+	
 }

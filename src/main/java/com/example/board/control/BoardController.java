@@ -1,5 +1,6 @@
 package com.example.board.control;
 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -57,20 +58,50 @@ public class BoardController {
 		ModelAndView mav = new ModelAndView("view/main/index");
 		List<BoardDTO> boardDTOList = new ArrayList<BoardDTO>();
 		try {
-			System.out.println("서비스가기전");
 			boardDTOList = boardservice.list();
-			System.out.println("ㅎㅇㅎㅇ");
 			mav.addObject("boardlist", boardDTOList);
 		} catch (Exception e) {
-			System.out.println("에러입니다");
 			e.printStackTrace();
 		}
 		return mav;
 	}
 	
-	@RequestMapping(value="/dd")
-	public String dd() {
-		return "view/main/dd";
+	@RequestMapping(value="/view/{idx}", method = RequestMethod.GET)
+	public ModelAndView view(HttpServletRequest req, HttpServletResponse res, @PathVariable("idx") int idx) {
+		ModelAndView mav = new ModelAndView("view/main/view");
+		BoardDTO boardDTO = boardservice.view(idx);
+		try {
+			boardDTO = boardservice.view(idx);
+			mav.addObject("boardView", boardDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mav;
 	}
+	
+	@RequestMapping(value="/write_page", method = RequestMethod.GET)
+	public String write_page() {
+		return "view/main/write_page";
+	}
+	
+	@RequestMapping(value="/write_page", method = RequestMethod.POST)
+	public String write_page2(BoardDTO boardDTO) {
+		try {
+			boardservice.write(boardDTO);			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/board/list";
+	}
+	
+//	@RequestMapping(value="/post", method = RequestMethod.GET)
+//	public String write_commit() {
+//		return "view/main/write_commit";
+//	}
+	
+//	@RequestMapping(value="/write_commit", method = RequestMethod.POST)
+//	public String write_commit2() {
+//		return "view/main/write_commit";
+//	}
 	
 }
