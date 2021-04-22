@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게시판 - 목록</title>
+    <link rel='stylesheet' href='/webjars/bootstrap/4.5.0/css/bootstrap.min.css'>
+</head>
+<body>
+<!-- <header th:insert="common/header.html"></header> -->
+<div class="container">
+    <table class="table">
+        <thead class="thead-light">
+        <tr class="text-center">
+            <th scope="col">NO</th>
+            <th scope="col">제목</th>
+            <th scope="col">작성자</th>
+            <th scope="col">작성일</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- board/list.html에서 postList를 받아, 데이터베이스에 있는 내용들을 출력해 준다.-->
+        <tr class="text-center" th:each="boardlist : ${boardlist}">
+            <th scope="row">
+                <span th:text="${boardlist.idx}"></span>
+            </th>
+            <td>
+                <!-- <a th:href="@{'/boardlist/' + ${boardlist.id}}"> -->
+                <a th:href="@{'/board/view/' + ${boardlist.id}}">
+                    <span th:text="${boardlist.title}"></span>
+                </a>
+            </td>
+            <td>
+                <span th:text="${boardlist.id}"></span>
+            </td>
+            <td>
+                <!-- <span th:text="${#temporals.createDate(boardlist.regdate, 'yyyy-MM-dd HH:mm')}"></span>
+                <span th:text="${boardlist.regdate}"></span> -->
+                <!-- <span th:text="${#temporals.createDate(boardlist.regdate, 'yyyy-MM-dd HH:mm')}"> </span> -->
+                <span th:text="${#dates.format(boardlist.regdate, 'yyyy-MM-dd HH:mm')}"></span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="row">
+        <div class="col-auto mr-auto"></div>
+        <div class="col-auto">
+            <a class="btn btn-primary" th:href="@{/boardlist}" role="button">글쓰기</a>
+        </div>
+    </div>
+</div>
+<script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+<script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>
