@@ -3,7 +3,6 @@ package com.example.board.control;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.board.dto.BoardDTO;
@@ -87,6 +86,7 @@ public class BoardController {
 	@RequestMapping(value="/write_page", method = RequestMethod.POST)
 	public String write_page2(BoardDTO boardDTO) {
 		try {
+			
 			boardservice.write(boardDTO);			
 		} catch (Exception e) {
 			e.printStackTrace();
