@@ -12,4 +12,20 @@
     <insert id="write" parameterType="BoardDTO">
     	insert into studyboard(id,title,content,regdate) values(#{id},#{title},#{content},sysdate());
     </insert>
+    <select id="edit" resultType="BoardDTO">
+		SELECT * FROM studyboard WHERE idx=#{idx}	
+	</select>
+	<update id="update" parameterType="BoardDTO">
+		UPDATE studyboard SET
+			id = #{id}, 
+			title = #{title}, 
+			content = #{content}, 
+			regdate = sysdate() 
+		WHERE idx = #{idx}
+	</update>
+	<delete id="delete">
+		DELETE FROM studyboard
+		WHERE idx = #{idx}
+	</delete>
+	
 </mapper>

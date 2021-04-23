@@ -11,7 +11,20 @@ public class StaticResourceConfig extends WebMvcConfigurerAdapter{
 	
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		
+		registry.addResourceHandler("/**").addResourceLocations("classpath:/webjars/");
 		registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
+		registry.addResourceHandler("/**").addResourceLocations("classpath:/public");
+		
+		registry.addResourceHandler("/**").addResourceLocations("classpath:/resources/");
+		registry.addResourceHandler("/**").addResourceLocations("classpath:/META-INF/resources");
+		
+		
 		registry.addResourceHandler("/upload/**").addResourceLocations(staticResouceLocation);
+		
+		   registry.addResourceHandler("/webjars/**")
+           .addResourceLocations("/webjars/")
+           .resourceChain(false);
+   registry.setOrder(1);
 	}
 }

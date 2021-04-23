@@ -13,4 +13,10 @@ public interface BoardMapper {
 	public BoardDTO view(int idx);
 	
 	public int write(BoardDTO dto);
+	
+	public BoardDTO edit(int idx);
+	
+	public int update(BoardDTO dto);
+	
+	public int delete(int idx);
 }

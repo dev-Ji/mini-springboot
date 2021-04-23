@@ -30,4 +30,16 @@ public class BoardService {
 		return boardMapper.write(dto);
 	}
 	
+	public BoardDTO edit(int idx) {
+		return boardMapper.edit(idx);
+	}
+	
+	public int update(BoardDTO dto) {
+		return boardMapper.update(dto);
+	}
+	
+	public int delete(int idx) {
+		return boardMapper.delete(idx);
+	}
+	
 }

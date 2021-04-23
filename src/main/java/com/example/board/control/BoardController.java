@@ -94,6 +94,39 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
+	@RequestMapping(value="/edit/{idx}", method = RequestMethod.GET)
+	public ModelAndView edit(@PathVariable("idx") int idx) {
+		ModelAndView mav = new ModelAndView("view/main/edit");
+		try {
+			BoardDTO boardDTO = boardservice.edit(idx);
+			mav.addObject("boardcontent", boardDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mav;
+	}
+	
+	@RequestMapping(value="/edit/{idx}", method = RequestMethod.POST)
+	public ModelAndView update(BoardDTO boardDTO) {
+		ModelAndView mav = new ModelAndView("redirect:/board/list");
+		try {
+			boardservice.update(boardDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mav;
+	}
+	
+	@RequestMapping(value="/delete/{idx}" , method = RequestMethod.GET)
+	public String delete(@PathVariable("idx") int idx) {
+		
+		try {
+			boardservice.delete(idx);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return "redirect:/board/list";
+	}
 //	@RequestMapping(value="/post", method = RequestMethod.GET)
 //	public String write_commit() {
 //		return "view/main/write_commit";

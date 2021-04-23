@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>게시판 - 목록</title>
-    <link rel='stylesheet' href='/webjars/bootstrap/4.5.0/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='/webjars/bootstrap/4.4.1/css/bootstrap.min.css'>
 </head>
 <body>
-<!-- <header th:insert="common/header.html"></header> -->
+<header th:insert="layout/header.html"></header>
 <div class="container">
     <table class="table">
         <thead class="thead-light">
@@ -34,10 +34,11 @@
         <div class="col-auto mr-auto"></div>
         <div class="col-auto">
             <a class="btn btn-primary" th:href="@{'/board/write_page'}" role="button">글쓰기</a>
+            <a class="btn btn-primary" th:href="@{'/board/edit/'} + ${boardView.idx}" role="button">수정하기</a>
+            <a class="btn btn-primary" th:href="@{'/board/delete/'} + ${boardView.idx}" role="button">삭제하기</a>
         </div>
     </div>
 </div>
-<script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
-<script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
 </body>
 </html>
