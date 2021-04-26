@@ -3,8 +3,8 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.board.mapper.BoardMapper">
-	<select id="list" resultType="BoardDTO">
-		SELECT * FROM studyboard
+	<select id="list" parameterType="int" resultType="BoardDTO">
+		SELECT * FROM studyboard LIMIT #{page}, #{page}
 	</select>
 	<select id="view" resultType="BoardDTO">
 		SELECT * FROM studyboard WHERE idx=#{idx}	

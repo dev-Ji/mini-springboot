@@ -18,8 +18,8 @@ public class BoardService {
 	@Autowired
 	private BoardMapper boardMapper;
 	
-	public List<BoardDTO> list() {
-		return boardMapper.list();
+	public List<BoardDTO> list(int page) {
+		return boardMapper.list(page);
 	}
 	
 	public BoardDTO view(int idx) {

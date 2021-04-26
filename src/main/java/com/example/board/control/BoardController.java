@@ -3,6 +3,7 @@ package com.example.board.control;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.board.dto.BoardDTO;
@@ -24,40 +25,15 @@ public class BoardController {
 	
 	@Autowired
 	private BoardService boardservice;
-	
-//	@RequestMapping(value = "/list")
-//	public List<BoardDTO> list(HttpServletRequest req, HttpServletResponse res, BoardDTO boardDTO) {
-//		List<BoardDTO> boardDTOList = new ArrayList<BoardDTO>();
-//		
-//		try {
-//			boardDTOList = boardservice.list();
-//		} catch (Exception e) {
-//			return boardDTOList;
-//		}
-//		
-//		return boardDTOList;
-//	}
-	
-//	@RequestMapping(value = "/list")
-//	public List<BoardDTO> list(HttpServletRequest req, HttpServletResponse res, BoardDTO boardDTO) {
-//		List<BoardDTO> boardDTOList = new ArrayList<BoardDTO>();
-//		
-//		try {
-//			boardDTOList = boardservice.list();
-//		} catch (Exception e) {
-//			return boardDTOList;
-//		}
-//		
-//		return boardDTOList;
-//	}
+		
 	
 	
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ModelAndView index(HttpServletRequest req, HttpServletResponse res, BoardDTO boardDTO) {
+	@RequestMapping(value = "/list/{page}", method = RequestMethod.GET)
+	public ModelAndView index(@PathVariable("page") int page, BoardDTO boardDTO) {
 		ModelAndView mav = new ModelAndView("view/main/index");
 		List<BoardDTO> boardDTOList = new ArrayList<BoardDTO>();
 		try {
-			boardDTOList = boardservice.list();
+			boardDTOList = boardservice.list(page);
 			mav.addObject("boardlist", boardDTOList);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -131,7 +107,7 @@ public class BoardController {
 //	public String write_commit() {
 //		return "view/main/write_commit";
 //	}
-	
+
 //	@RequestMapping(value="/write_commit", method = RequestMethod.POST)
 //	public String write_commit2() {
 //		return "view/main/write_commit";

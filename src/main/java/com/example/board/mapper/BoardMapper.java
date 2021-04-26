@@ -8,7 +8,7 @@ import com.example.board.dto.BoardDTO;
 
 @Mapper
 public interface BoardMapper {
-	public List<BoardDTO> list();
+	public List<BoardDTO> list(int page);
 	
 	public BoardDTO view(int idx);
 	

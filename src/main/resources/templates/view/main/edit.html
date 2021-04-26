@@ -9,8 +9,8 @@
 <header th:insert="layout/header.html"></header>
 <div class="container">
     <form th:action="@{'/board/edit/' + ${boardcontent.idx}}" method="post">
-        <input type="hidden" name="_method" value="put"/>
-        <input type="hidden" name="idx" th:value="${boardcontent.idx}"/>
+       <!-- <input type="hidden" name="_method" value="put"/>
+        <input type="hidden" name="idx" th:value="${boardcontent.idx}"/> -->
         <div class="form-group row">
             <label for="inputTitle" class="col-sm-2 col-form-label"><strong>제목</strong></label>
             <div class="col-sm-10">
@@ -20,7 +20,7 @@
         <div class="form-group row">
             <label for="inputAuthor" class="col-sm-2 col-form-label"><strong>작성자</strong></label>
             <div class="col-sm-10">
-                <input type="text" name="id" class="form-control" id="inputId" th:value="${boardcontent.id}">
+                <input type="text" name="id" class="form-control" id="inputId" th:value="${boardcontent.id}" readonly>
             </div>
         </div>
         <div class="form-group row">
@@ -32,11 +32,12 @@
         <div class="row">
             <div class="col-auto mr-auto"></div>
             <div class="col-auto">
-                <input class="btn btn-primary" type="submit" role="button" value="수정">
+                <input class="btn btn-primary" id="updateBtn" type="submit" role="button" value="수정">
             </div>
         </div>
     </form>
 </div>
 <script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+<script src="/js/view/edit.js"></script>
 </body>
 </html>
