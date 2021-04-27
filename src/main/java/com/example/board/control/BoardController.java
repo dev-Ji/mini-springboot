@@ -33,7 +33,13 @@ public class BoardController {
 		ModelAndView mav = new ModelAndView("view/main/index");
 		List<BoardDTO> boardDTOList = new ArrayList<BoardDTO>();
 		try {
-			boardDTOList = boardservice.list(page);
+			int startPage = 1;
+			if(page == 1) {
+				startPage = 0;
+			}else if(page > 1) {
+				startPage = page*10 -10;
+			}
+			boardDTOList = boardservice.list(startPage);
 			mav.addObject("boardlist", boardDTOList);
 		} catch (Exception e) {
 			e.printStackTrace();
